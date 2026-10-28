@@ -29,9 +29,21 @@ const arUnit = (v: number, one: string, two: string, many: string) =>
 
 /* Botrix watchtime unit = minutes. COMPACT format — long forms looked clunky:
    d>0 → "يومين 15س" / "2d 15h"   (minutes dropped once days exist)
-   d=0 → "15س 10د" / "15h 10m"    else → "10د" / "10m" */
-const formatWatchtime = (mins: number, lang: 'en' | 'ar') => {
+   d=0 → "15س 10د" / "15h 10m"    else → "10د" / "10m"
+   pretty=true (podium) → proper Arabic words: "يومين و 9 ساعات" */
+const formatWatchtime = (mins: number, lang: 'en' | 'ar', pretty = false) => {
   const { d, h, m } = splitWatchtime(mins);
+  if (pretty) {
+    if (lang === 'en') {
+      const parts = d > 0 ? [`${d}d`] : [];
+      if (h > 0) parts.push(`${h}h`);
+      return parts.join(' + ') || '0h';
+    }
+    const parts: string[] = [];
+    if (d > 0) parts.push(arUnit(d, 'يوم', 'يومين', 'أيام'));
+    if (h > 0) parts.push(arUnit(h, 'ساعة', 'ساعتين', 'ساعات'));
+    return parts.join(' و ') || '0 دقيقة';
+  }
   if (d > 0) {
     if (lang === 'en') {
       const parts = [`${d}d`];
@@ -210,7 +222,7 @@ const BotrixLeaderboard: React.FC<BotrixLeaderboardProps> = ({ lang }) => {
                     </span>
                     <b dir="auto">{podium[1].name}</b>
                     <small>Lv.{Math.max(1, Math.round((podium[1].points || 0) / 1750))} · {formatNum(podium[1].points)} XP</small>
-                    <em dir={lang === 'ar' ? 'rtl' : 'ltr'}>{formatWatchtime(podium[1].watchtime, lang)}</em>
+                    <em dir={lang === 'ar' ? 'rtl' : 'ltr'} className="cl-time"><span className="ico">⏱</span><b>{formatWatchtime(podium[1].watchtime, lang, true)}</b></em>
                     <div className="cl-base">2</div>
                   </div>
                 )}
@@ -224,7 +236,7 @@ const BotrixLeaderboard: React.FC<BotrixLeaderboardProps> = ({ lang }) => {
                     </span>
                     <b dir="auto">{podium[0].name}</b>
                     <small>Lv.{Math.max(1, Math.round((podium[0].points || 0) / 1750))} · {formatNum(podium[0].points)} XP</small>
-                    <em dir={lang === 'ar' ? 'rtl' : 'ltr'}>{formatWatchtime(podium[0].watchtime, lang)}</em>
+                    <em dir={lang === 'ar' ? 'rtl' : 'ltr'} className="cl-time"><span className="ico">⏱</span><b>{formatWatchtime(podium[0].watchtime, lang, true)}</b></em>
                     <div className="cl-base">1</div>
                   </div>
                 )}
@@ -237,7 +249,7 @@ const BotrixLeaderboard: React.FC<BotrixLeaderboardProps> = ({ lang }) => {
                     </span>
                     <b dir="auto">{podium[2].name}</b>
                     <small>Lv.{Math.max(1, Math.round((podium[2].points || 0) / 1750))} · {formatNum(podium[2].points)} XP</small>
-                    <em dir={lang === 'ar' ? 'rtl' : 'ltr'}>{formatWatchtime(podium[2].watchtime, lang)}</em>
+                    <em dir={lang === 'ar' ? 'rtl' : 'ltr'} className="cl-time"><span className="ico">⏱</span><b>{formatWatchtime(podium[2].watchtime, lang, true)}</b></em>
                     <div className="cl-base">3</div>
                   </div>
                 )}

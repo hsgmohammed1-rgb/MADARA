@@ -425,6 +425,13 @@
     .cl-crown { font-size: 30px; filter: grayscale(1) brightness(1.7) contrast(1.1); margin-bottom: -8px; animation: cl-fl 2.5s ease-in-out infinite; }
     .cl-pi small { color: #8c97aa; font-size: 11px; }
     .cl-pi em { font-style: normal; color: #eef2f8; font-weight: 900; font-size: 16px; }
+    /* podium watchtime — pretty clock pill (the raw "يومين 9 س" text looked cramped) */
+    .cl-pi .cl-time { display: inline-flex; align-items: center; gap: 6px; margin-top: 5px;
+      border: 1px solid rgba(127,178,255,.4); background: linear-gradient(160deg, rgba(77,141,255,.16), rgba(77,141,255,.04));
+      border-radius: 99px; padding: 5px 13px; font-size: 12px; font-weight: 800; color: #D6E9FF;
+      box-shadow: 0 4px 14px rgba(77,141,255,.18), inset 0 1px 0 rgba(255,255,255,.08); white-space: nowrap; }
+    .cl-pi .cl-time .ico { font-size: 12px; opacity: .9; }
+    .cl-pi .cl-time b { color: #fff; font-weight: 900; }
     .cl-base { width: 100%; border-radius: 16px 16px 0 0; display: grid; place-items: center; font-size: 36px; font-weight: 900; font-style: italic; color: #ffffff30; border: 1px solid rgba(255,255,255,.09); border-bottom: 0; background: linear-gradient(#232a42, #0a0c18); position: relative; overflow: hidden; }
     .cl-base:before { content: ""; position: absolute; inset: 0 0 auto; height: 2px; }
     .cl-p1 .cl-base { height: 104px; background: linear-gradient(#46506c, #0a0c18); box-shadow: 0 -12px 44px rgba(170,190,240,.28); border-color: rgba(190,205,235,.45); color: #ffffff55; }
@@ -441,8 +448,7 @@
     .cl-nm b { display: block; font-size: 14px; color: #fff; }
     .cl-nm small { color: #8c97aa; font-size: 11px; }
     /* RTL: legend names read from the right (ranks 3+ rows) */
-    /* RTL: keep row grid LTR so the name block hugs the RIGHT side (next to the watchtime), avatar/rank stay left */
-    [dir="rtl"] .cl-row { direction: ltr; }
+    /* RTL rows keep natural RTL flow (names on the left, rank/avatar on the right) */
     [dir="rtl"] .cl-row .cl-nm { text-align: right; }
     .cl-st { display: flex; gap: 6px; }
     .cl-st span { font-size: 12px; font-weight: 800; padding: 4px 11px; border-radius: 99px; background: #181d34; color: #aab8d0; border: 1px solid rgba(170,190,230,.16); white-space: nowrap; }

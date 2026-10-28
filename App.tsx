@@ -1176,10 +1176,16 @@ export default function App() {
                                             </div>
                                         </div>
                                         <div className="w-full xl:w-[360px] shrink-0 min-w-0 p-3 md:p-4 xl:ps-0">
-                                            <div className="h-[480px] xl:h-[620px] xl:max-h-[78vh] rounded-2xl overflow-hidden border border-white/10 min-h-0">
-                                                <Suspense fallback={<div className="w-full h-full bg-white/[0.02] animate-pulse" />}>
-                                                    <ChatWidget lang={lang} isDemo={false} />
-                                                </Suspense>
+                                            <div className="h-[480px] xl:h-[620px] xl:max-h-[78vh] rounded-2xl overflow-hidden border border-white/10 min-h-0 bg-[#0a0e1a]">
+                                                {/* Kick's own live chat — official popout embed (site chat had glitches) */}
+                                                <iframe
+                                                    src="https://kick.com/popout/mdra9/chat"
+                                                    title={lang === 'ar' ? 'شات كيك المباشر' : 'Kick Live Chat'}
+                                                    className="w-full h-full"
+                                                    style={{ border: 0, display: 'block' }}
+                                                    allow="autoplay; fullscreen"
+                                                    loading="lazy"
+                                                />
                                             </div>
                                         </div>
                                     </div>
