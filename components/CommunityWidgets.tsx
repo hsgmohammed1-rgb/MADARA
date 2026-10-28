@@ -97,7 +97,7 @@ const X_LAST_POST = {
    timeEn: 'Oct 20',
    timeAr: '20 اكتوبر',
    url: X_URL,
-   image: 'https://pbs.twimg.com/amplify_video_thumb/2106398965440622593/img/m7XolDPpdu0gzaSR?format=webp&name=medium',
+   image: '',  /* text-only per user request */
 };
 
 const fmtCompact = (n: number) =>

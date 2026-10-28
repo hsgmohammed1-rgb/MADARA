@@ -1243,11 +1243,13 @@ export default function App() {
                                     </p>
                                     <a href="https://mohhsg.vercel.app/" target="_blank" rel="noopener noreferrer"
                                         title="HSG — mohhsg.vercel.app"
-                                        className="group/hsg inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/[0.04] backdrop-blur px-4 py-2.5 transition-all duration-300 hover:border-[#9CC5FF]/60 hover:bg-white/[0.07] hover:-translate-y-0.5 hover:shadow-[0_14px_36px_-14px_rgba(77,141,255,0.55)] shadow-[0_10px_30px_-12px_rgba(0,0,0,0.85)]">
-                                        <span className="w-7 h-7 rounded-full bg-gradient-to-br from-[#D6E9FF] via-[#4D8DFF] to-[#12315E] grid place-items-center text-[#0B1B33] text-sm font-black shadow-[0_0_16px_rgba(77,141,255,0.65)] transition-transform duration-500 group-hover/hsg:rotate-90" aria-hidden="true">✦</span>
+                                        className="group/hsg inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/[0.04] backdrop-blur px-4 py-2.5 transition-all duration-300 hover:border-white/40 hover:bg-white/[0.07] hover:-translate-y-0.5 hover:shadow-[0_14px_36px_-14px_rgba(0,0,0,0.9)] shadow-[0_10px_30px_-12px_rgba(0,0,0,0.85)]">
+                                        <span className="w-7 h-7 rounded-full overflow-hidden grid place-items-center bg-[#0b0b0b] ring-1 ring-white/25 shadow-[0_2px_10px_rgba(0,0,0,0.8)] transition-transform duration-500 group-hover/hsg:rotate-12" aria-hidden="true">
+                                            <img src="/hsg-icon-touch.png" alt="HSG" className="w-5 h-5 object-cover" loading="eager" />
+                                        </span>
                                         <span className="text-[12px] font-black text-white/85">{lang === 'en' ? 'Want a site of your own?' : 'تبي موقع خاص بك؟'}</span>
                                         <span className="text-white/25 font-black">·</span>
-                                        <span className="text-[12px] font-black text-[#9CC5FF] group-hover/hsg:text-[#D6E9FF] transition-colors">{lang === 'en' ? 'Request yours' : 'اطلب موقعك'}</span>
+                                        <span className="text-[12px] font-black text-white/70 group-hover/hsg:text-white transition-colors">{lang === 'en' ? 'Request yours' : 'اطلب موقعك'}</span>
                                     </a>
                                 </div>
                             </div>
