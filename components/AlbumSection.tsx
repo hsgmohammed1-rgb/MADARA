@@ -1,4 +1,4 @@
-﻿import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import type { Language } from '../types';
 
 /* ============================================================
@@ -15,9 +15,9 @@ const PHOTOS = Array.from({ length: 17 }, (_, i) => ({
 /* ---------- EDITABLE COPY — replace the text here when the final version arrives ---------- */
 const IDENTITY = {
     ar: {
-        kicker: 'شخصية مدارا',
-        name: 'مدارا',
-        latin: 'MADARA',
+        kicker: 'شخصية MADARA',
+        name: 'MADARA',
+        latin: '',
         short: 'عسكري مثابر قديم في مدينة مستري تاون، صعد حتى رئاسة الشرطة.',
         date: '05 / 05 / 2024',
         chips: ['مستري تاون', 'رئيس شرطة', 'بار ساندي', 'SSF'],
@@ -25,7 +25,7 @@ const IDENTITY = {
     en: {
         kicker: 'The character of MADARA',
         name: 'MADARA',
-        latin: 'MADARA',
+        latin: '',
         short: 'A veteran officer from Mistri Town who rose to police chief.',
         date: '05 / 05 / 2024',
         chips: ['Mistri Town', 'Police chief', 'Bar Sandy', 'SSF'],
@@ -403,13 +403,15 @@ export const AlbumSection: React.FC<{ lang: Language }> = ({ lang }) => {
                                 <span>{copy.kicker}</span>
                             </div>
 
-                            <h3 className={`alb-id-name mt-4 text-[34px] leading-[1.05] font-black tracking-tight sm:text-[46px] lg:text-[56px] xl:text-[62px] ${isAr ? 'font-arabic' : ''}`}>
+                            <h3 className="alb-id-name mt-4 text-[34px] leading-[1.05] font-black tracking-tight sm:text-[46px] lg:text-[56px] xl:text-[62px]">
                                 {copy.name}
                             </h3>
 
-                            <p className="mt-2 text-[11px] sm:text-xs font-black uppercase text-white/25" dir="ltr">
-                                {copy.latin}
-                            </p>
+                            {copy.latin ? (
+                                <p className="mt-2 text-[11px] sm:text-xs font-black uppercase text-white/25" dir="ltr">
+                                    {copy.latin}
+                                </p>
+                            ) : null}
 
                             <span className="alb-rule mt-6 block" aria-hidden="true" />
 

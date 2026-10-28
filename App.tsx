@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef, useCallback, Suspense, lazy } from 'react';
+import React, { useState, useEffect, useRef, useCallback, Suspense, lazy } from 'react';
 import { KickIcon, XIcon, TikTokIcon, WhatsAppIcon, YoutubeIcon } from './components/Icons';
 import { SocialLink, Language } from './types';
 import { StreamPlayer } from './components/StreamPlayer';
@@ -90,18 +90,18 @@ const TRANSLATIONS = {
     },
     ar: {
         status: 'بث مباشر الآن', statusOffline: 'غير متصل حالياً',
-        headerTitle: 'مركز مدارا للبث المباشر',
-        eyebrow: 'خارج المألوف — مدارا',
-        nameAr: 'مدارا',
-        bio: 'مدارا — ستريمر وصانع محتوى في لفل ون، ملك الكيك. بثوث IAA و MT RP مباشرة وصاحب شخصية جيفارا الأسطورية، تحديات أسطورية وسهرات عالمية.',
+        headerTitle: 'مركز بث MADARA',
+        eyebrow: 'خارج المألوف — MADARA',
+        nameAr: 'MADARA',
+        bio: 'MADARA — ستريمر وصانع محتوى في لفل ون، ملك الكيك. بثوث IAA و MT RP مباشرة وصاحب شخصية جيفارا الأسطورية، تحديات أسطورية وسهرات عالمية.',
         tags: ['Just Chatting', 'IAA', 'MT RP', 'Level One'],
         defaultStreamTitle: 'تابع البثوث السابقة | تابعني الآن',
         defaultCategory: 'غير متصل',
-        footer: '© 2026 MADARA — مدارا. جميع الحقوق محفوظة.',
+        footer: '© 2026 MADARA. جميع الحقوق محفوظة.',
         poweredBy: 'بدعم من MADARA ERA',
         watchLive: 'شاهد البث', followX: 'تابع على X',
         subOnly: 'للمشتركين فقط', dropsEnabled: 'الجوائز مفعلة', noTags: 'لا يوجد وسوم',
-        shareTitle: 'مركز بث MADARA', shareText: 'تابع بث مدارا المباشر على كيك!',         copied: 'تم نسخ الرابط!',
+        shareTitle: 'مركز بث MADARA', shareText: 'تابع بث MADARA المباشر على كيك!',         copied: 'تم نسخ الرابط!',
         lastSessionReport: 'تقرير الجلسة الأخيرة', ago: 'منذ', duration: 'المدة',
         categoriesSpent: 'الفئات التي تم بثها', highlights: 'لقطات ممتعة من البث',
         socialsTitle: 'ساحة التواصل', socialsSub: 'كل المنصات في مكان واحد — اختر ساحتك.',
@@ -1053,19 +1053,16 @@ export default function App() {
                                 {/* giant backdrop word */}
                                 <p className="font-gaming text-stroke-ice pointer-events-none select-none absolute inset-x-0 top-[6%] md:top-2 text-[23vw] md:text-[190px] leading-none opacity-20 md:opacity-30" dir="ltr" aria-hidden="true">MADARA</p>
 
-                                <h1 className="animate-fade-in-up relative font-heading font-black text-white leading-[1.05] tracking-tight text-[clamp(2.6rem,9vw,4.8rem)] mt-3" style={{ animationDelay: '180ms' }}>
-                                    {lang === 'ar' ? (
-                                        <>
-                                            {t.nameAr}
-                                            <span className="ice-text mx-2 inline-flex align-middle" aria-hidden="true">
-                                                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" className="translate-y-[-1px]"><path d="M12 2l4.5 7.5L12 22 7.5 9.5z" /></svg>
-                                            </span>
-                                            <span dir="ltr" className="hero-mdra9">MADARA</span>
-                                        </>
-                                    ) : (
-                                        <span dir="ltr" className="hero-mdra9">MADARA</span>
-                                    )}
+                                <h1 className="animate-fade-in-up relative font-heading font-black text-white leading-[1.05] tracking-tight text-[clamp(2.8rem,9vw,5.2rem)] mt-3" style={{ animationDelay: '180ms' }}>
+                                    <span dir="ltr" className="hero-mdra9 inline-block drop-shadow-[0_10px_35px_rgba(77,141,255,0.45)]">
+                                        MADARA
+                                    </span>
                                 </h1>
+                                <div className="flex justify-center mt-3" aria-hidden="true">
+                                    <span className="xt-line">
+                                        <span className="xt-line-dot" />
+                                    </span>
+                                </div>
                                 <p className="animate-fade-in-up text-white/70 text-[15px] md:text-lg leading-relaxed max-w-2xl mt-6 md:mt-7 font-medium mx-auto" style={{ animationDelay: '300ms' }}>{t.bio}</p>
 
                                 <div className="animate-fade-in-up flex flex-wrap justify-center gap-2 sm:gap-2.5 mt-5" style={{ animationDelay: '360ms' }}>
