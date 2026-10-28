@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://oflag.vercel.app/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://oflag.vercel.app/og-oflag.png</image:loc>
+      <image:title>اوفلاق | OFLAG — شعار الزمرد والبرونز الرسمي</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oflag.vercel.app/oflag-logo.webp</image:loc>
+      <image:title>OFLAG — الشعار الرسمي لاوفلاق</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oflag.vercel.app/album/01.jpg</image:loc>
+      <image:title>ألبوم اوفلاق — صورة 01</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oflag.vercel.app/album/02.jpg</image:loc>
+      <image:title>ألبوم اوفلاق — صورة 02</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oflag.vercel.app/album/03.jpg</image:loc>
+      <image:title>ألبوم اوفلاق — صورة 03</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oflag.vercel.app/album/04.jpg</image:loc>
+      <image:title>ألبوم اوفلاق — صورة 04</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oflag.vercel.app/album/05.jpg</image:loc>
+      <image:title>ألبوم اوفلاق — صورة 05</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oflag.vercel.app/album/06.jpg</image:loc>
+      <image:title>ألبوم اوفلاق — صورة 06</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oflag.vercel.app/album/07.jpg</image:loc>
+      <image:title>ألبوم اوفلاق — صورة 07</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oflag.vercel.app/album/08.jpg</image:loc>
+      <image:title>ألبوم اوفلاق — صورة 08</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oflag.vercel.app/album/09.jpg</image:loc>
+      <image:title>ألبوم اوفلاق — صورة 09</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oflag.vercel.app/album/10.jpg</image:loc>
+      <image:title>ألبوم اوفلاق — صورة 10</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oflag.vercel.app/album/11.jpg</image:loc>
+      <image:title>ألبوم اوفلاق — صورة 11</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oflag.vercel.app/album/12.jpg</image:loc>
+      <image:title>ألبوم اوفلاق — صورة 12</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oflag.vercel.app/album/13.jpg</image:loc>
+      <image:title>ألبوم اوفلاق — صورة 13</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oflag.vercel.app/album/14.jpg</image:loc>
+      <image:title>ألبوم اوفلاق — صورة 14</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oflag.vercel.app/album/15.jpg</image:loc>
+      <image:title>ألبوم اوفلاق — صورة 15</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oflag.vercel.app/album/16.jpg</image:loc>
+      <image:title>ألبوم اوفلاق — صورة 16</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://oflag.vercel.app/album/17.jpg</image:loc>
+      <image:title>ألبوم اوفلاق — صورة 17</image:title>
+    </image:image>
+  </url>
+</urlset>
