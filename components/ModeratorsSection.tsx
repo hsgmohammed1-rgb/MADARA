@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import type { Language } from '../types';
-import bossAvatar from '../a_3e36d294d592cba180d5351bbba2eb47.webp';
-import bossBanner from '../a_5acbcbbe77b99c8d4f9ac50448fffe3b.png';
+import bossAvatar from '../public/boss-avatar.webp';
+import bossBanner from '../public/boss-banner.png';
 
 interface RosterEntry {
   kick: string; // URL slug (verified via Kick API)
@@ -38,7 +38,7 @@ interface ModProfile {
   live: boolean;
 }
 
-const CACHE_KEY = 'madara_mods_cache_v4';
+const CACHE_KEY = 'madara_mods_cache_v6';
 const CACHE_TTL_MS = 30 * 60 * 1000;
 const REFRESH_MS = 10 * 60 * 1000;
 
@@ -137,11 +137,7 @@ async function fetchXMod(handle: string, timeoutMs = 9000): Promise<ModProfile |
 
 // ---- Layer 2 (boss): Discord — exact avatar/banner/frame from Discord CDN ----
 async function fetchDiscordMod(userId: string, timeoutMs = 9000): Promise<ModProfile | null> {
-  return {
-    name: 'xareej1',
-    handle: 'xareej1',
-    avatar: bossAvatar,
-    banner: bossBanner,
+  return {    name: 'xAREEJ1',    handle: 'xareej1',    avatar: bossAvatar || '',    banner: bossBanner || '',
     bio: '-Not every chapter needs an explanation.',
     followers: null,
     tweets: null,
@@ -325,33 +321,8 @@ const ModeratorsSection: React.FC<{ lang: Language }> = ({ lang }) => {
             <div className="relative px-4 sm:px-6 lg:px-8 pb-5 sm:pb-7 -mt-9 sm:-mt-12">
               <div className="flex flex-row items-center gap-3 sm:gap-4">
                 {/* الأفاتار بالتاج + هالة دوّارة — يمين */}
-                  <div className="relative w-fit shrink-0">
-                    <CrownIcon className="absolute -top-5 left-1/2 -translate-x-1/2 w-6 h-6 sm:w-7 sm:h-7 drop-shadow-[0_0_12px_rgba(77,141,255,0.9)] z-10" />
-                    <span className="halo-conic -inset-2" aria-hidden="true" />
-                    {boss.discord && (
-                      <img
-                        src="https://cdn.discordapp.com/media/v1/collectibles-shop/1212569433839636530/animated"
-                        alt="frame"
-                        className="absolute -inset-1 w-[150px] h-[150px] sm:w-[190px] sm:h-[190px] pointer-events-none z-20"
-                      />
-                    )}
-                    <span
-                    className="relative rounded-full p-[2.5px] sm:p-[3px] w-16 h-16 sm:w-24 sm:h-24 shrink-0 block"
-                    style={{
-                      background: 'conic-gradient(from 200deg,#D6E9FF,#4D8DFF,#7FB2FF,#0B1B33,#D6E9FF)',
-                      boxShadow: '0 0 44px rgba(77,141,255,0.6)',
-                    }}
-                  >
-                    <span className="block w-full h-full rounded-full overflow-hidden bg-black border-2 border-black">
-                      {bossP.avatar ? (
-                        <img src={bossP.avatar} alt={bossP.name} loading="lazy" decoding="async" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} className="w-full h-full object-cover" />
-                      ) : (
-                        <span className="w-full h-full flex items-center justify-center text-2xl sm:text-3xl font-black text-[#D6E9FF] bg-gradient-to-b from-[#0E1B33] to-black" dir="ltr">
-                          {(bossP.name || boss.kick).charAt(0).toUpperCase()}
-                        </span>
-                      )}
-                    </span>
-                  </span>
+                  <div className="relative w-fit shrink-0">                    <CrownIcon className="absolute -top-5 left-1/2 -translate-x-1/2 w-6 h-6 sm:w-7 sm:h-7 drop-shadow-[0_0_12px_rgba(77,141,255,0.9)] z-10" />                    <span className="halo-conic -inset-2" aria-hidden="true" />                    {boss.discord && (                      <img                        src="https://cdn.discordapp.com/media/v1/collectibles-shop/1212569433839636530/animated"                        alt="frame"                        className="absolute -inset-1 w-[150px] h-[150px] sm:w-[190px] sm:h-[190px] pointer-events-none z-20"                      />                    )}                    <span
+                    className="relative rounded-full p-[2.5px] sm:p-[3px] w-16 h-16 sm:w-24 sm:h-24 shrink-0 block"                    style={{                      background: 'conic-gradient(from 200deg,#D6E9FF,#4D8DFF,#7FB2FF,#0B1B33,#D6E9FF)',                      boxShadow: '0 0 44px rgba(77,141,255,0.6)',                    }}                  >                    <span className="block w-full h-full rounded-full overflow-hidden bg-black border-2 border-black">                      {bossP.avatar ? (                        <img src={bossP.avatar} alt={bossP.name} loading="lazy" decoding="async" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} className="relative z-10 w-full h-full object-cover" />                      ) : (                        <span className="w-full h-full flex items-center justify-center text-2xl sm:text-3xl font-black text-[#D6E9FF] bg-gradient-to-b from-[#0E1B33] to-black" dir="ltr">                          {(bossP.name || boss.kick).charAt(0).toUpperCase()}                        </span>                      )}                    </span>                  </span>
                   {bossP.live && (
                     <span className="absolute bottom-0.5 sm:bottom-1 end-0.5 sm:end-1 flex" aria-hidden="true">
                       <span className="absolute inline-flex h-full w-full rounded-full bg-[#9CC5FF] opacity-60 animate-ping" />
@@ -373,19 +344,7 @@ const ModeratorsSection: React.FC<{ lang: Language }> = ({ lang }) => {
                   <p className="text-[9px] sm:text-[10px] font-bold text-[#7FB2FF]/70 tracking-[0.12em] mt-1 sm:mt-1.5 truncate text-right" dir="ltr">
                     KICK: {boss.kick}
                   </p>
-                </div>
-
-                {/* صندوقا الإحصائيات — يسار */}
-                <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-                  <span className="inline-flex flex-col items-center min-w-[60px] sm:min-w-[72px] px-3 sm:px-4 py-1.5 sm:py-2 rounded-2xl bg-[#4D8DFF]/[0.07] border border-[#4D8DFF]/30 shadow-[0_0_24px_-8px_rgba(77,141,255,0.5)]">
-                    <span className="text-sm sm:text-lg font-black text-[#7FB2FF]" dir="ltr">{compact(bossP.followers)}</span>
-                    <span className="text-[8px] sm:text-[9px] font-bold text-white/40">{t.followers}</span>
-                  </span>
-                  <span className="inline-flex flex-col items-center min-w-[60px] sm:min-w-[72px] px-3 sm:px-4 py-1.5 sm:py-2 rounded-2xl bg-white/[0.04] border border-white/10">
-                    <span className="text-sm sm:text-lg font-black text-white" dir="ltr">{compact(bossP.tweets)}</span>
-                    <span className="text-[8px] sm:text-[9px] font-bold text-white/40">{t.posts}</span>
-                  </span>
-                </div>
+                </div>                {/* الإحصائيات — مخفي بقصد وضع شارة جديدة/إشارة بدلاً منه */}                <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 opacity-0">                  <span className="inline-flex flex-col items-center min-w-[60px] sm:min-w-[72px] px-3 sm:px-4 py-1.5 sm:py-2 rounded-2xl bg-[#4D8DFF]/[0.07] border border-[#4D8DFF]/30 shadow-[0_0_24px_-8px_rgba(77,141,255,0.5)]">                    <span className="text-sm sm:text-lg font-black text-[#7FB2FF]" dir="ltr">{compact(bossP.followers)}</span>                    <span className="text-[8px] sm:text-[9px] font-bold text-white/40">{t.followers}</span>                  </span>                  <span className="inline-flex flex-col items-center min-w-[60px] sm:min-w-[72px] px-3 sm:px-4 py-1.5 sm:py-2 rounded-2xl bg-white/[0.04] border border-white/10">                    <span className="text-sm sm:text-lg font-black text-white" dir="ltr">{compact(bossP.tweets)}</span>                    <span className="text-[8px] sm:text-[9px] font-bold text-white/40">{t.posts}</span>                  </span>                </div>
               </div>
 
               {/* البايو تحت صف الهوية — يمين دائماً */}
