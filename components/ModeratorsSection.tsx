@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import type { Language } from '../types';
+import bossAvatar from '../a_3e36d294d592cba180d5351bbba2eb47.webp';
+import bossBanner from '../a_5acbcbbe77b99c8d4f9ac50448fffe3b.png';
 
 interface RosterEntry {
   kick: string; // URL slug (verified via Kick API)
@@ -138,8 +140,8 @@ async function fetchDiscordMod(userId: string, timeoutMs = 9000): Promise<ModPro
   return {
     name: 'xareej1',
     handle: 'xareej1',
-    avatar: 'https://cdn.discordapp.com/avatars/709645074421514251/a_3e36d294d592cba180d5351bbba2eb47.webp',
-    banner: 'https://cdn.discordapp.com/banners/709645074421514251/a_5acbcbbe77b99c8d4f9ac50448fffe3b.png',
+    avatar: bossAvatar,
+    banner: bossBanner,
     bio: '-Not every chapter needs an explanation.',
     followers: null,
     tweets: null,
