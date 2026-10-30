@@ -138,8 +138,8 @@ async function fetchDiscordMod(userId: string, timeoutMs = 9000): Promise<ModPro
   return {
     name: 'xareej1',
     handle: 'xareej1',
-    avatar: 'https://cdn.discordapp.com/avatars/709645074421514251/a_3e36d294d592cba180d5351bbba2eb47.webp?size=128',
-    banner: 'https://cdn.discordapp.com/banners/709645074421514251/a_5acbcbbe77b99c8d4f9ac50448fffe3b.png?size=480',
+    avatar: 'https://cdn.discordapp.com/avatars/709645074421514251/a_3e36d294d592cba180d5351bbba2eb47.webp',
+    banner: 'https://cdn.discordapp.com/banners/709645074421514251/a_5acbcbbe77b99c8d4f9ac50448fffe3b.png',
     bio: '-Not every chapter needs an explanation.',
     followers: null,
     tweets: null,
@@ -330,7 +330,7 @@ const ModeratorsSection: React.FC<{ lang: Language }> = ({ lang }) => {
                       <img
                         src="https://cdn.discordapp.com/media/v1/collectibles-shop/1212569433839636530/animated"
                         alt="frame"
-                        className="absolute -inset-1 w-[150px] h-[150px] sm:w-[190px] sm:h-[190px] pointer-events-none z-20 animate-spin-slow"
+                        className="absolute -inset-1 w-[150px] h-[150px] sm:w-[190px] sm:h-[190px] pointer-events-none z-20"
                       />
                     )}
                     <span
