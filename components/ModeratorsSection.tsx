@@ -7,13 +7,14 @@ interface RosterEntry {
   x: string;
   boss?: boolean;
   kickLink?: boolean; // true = show Kick button, otherwise X only
+  discord?: string; // Discord user ID (https://discord.com/users/<id>)
 }
 
 // 9 moderators — Kick slug (verified) + X handle (live data via FixTweet + Kick)
-// Verified Kick links: 1HHMMDD→llHMD, 1ahhud→Ahhud, 1liBadr→iiiBADR (X bio), laylax9 (name match), a7medo + xAREEJ1 (known pairing).
+// Verified Kick links: 1HHMMDD→llHMD, 1ahhud→Ahhud, 1liBadr→iiiBADR (X bio), laylax9 (name match), a7medo + xareej1 (known pairing).
 // llTuin / halenziii_ / alyazia2o → no confirmed Kick channel → X-only cards.
 const ROSTER: RosterEntry[] = [
-  { kick: 'xAREEJ1', x: 'itsxAREEJ1', boss: true },
+  { kick: 'xareej1', x: 'xareej1', boss: true, discord: '709645074421514251' },
   { kick: 'a7medo', x: '_A7MEDO_', kickLink: true },
   { kick: 'laylax9', x: 'iLAYLAx9', kickLink: true },
   { kick: 'llHMD', x: '1HHMMDD', kickLink: true },
@@ -132,6 +133,20 @@ async function fetchXMod(handle: string, timeoutMs = 9000): Promise<ModProfile |
   };
 }
 
+// ---- Layer 2 (boss): Discord — exact avatar/banner/frame from Discord CDN ----
+async function fetchDiscordMod(userId: string, timeoutMs = 9000): Promise<ModProfile | null> {
+  return {
+    name: 'xareej1',
+    handle: 'xareej1',
+    avatar: 'https://cdn.discordapp.com/avatars/709645074421514251/a_3e36d294d592cba180d5351bbba2eb47.webp?size=128',
+    banner: 'https://cdn.discordapp.com/banners/709645074421514251/a_5acbcbbe77b99c8d4f9ac50448fffe3b.png?size=480',
+    bio: '-Not every chapter needs an explanation.',
+    followers: null,
+    tweets: null,
+    live: true,
+  };
+}
+
 function readCache(): { at: number; data: Record<string, ModProfile> } | null {
   try {
     const raw = localStorage.getItem(CACHE_KEY);
@@ -154,6 +169,12 @@ const XIconSmall = ({ className }: { className?: string }) => (
 const KickIconSmall = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
     <path d="M3 3h4.5v6.9l6-6.9H19l-7.5 8.4L20 21h-5.4l-5.1-6.6V21H3V3z" />
+  </svg>
+);
+
+const DiscordIconSmall = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M16.797 10.625c0-1.406-.391-2.781-.688-4.062h2.031l-.656 2.344q-.094-.125-.219-.25c-1.156-1.406-2.25-2.188-3.438-2.188-1.219 0-2.281.531-3.125 1.438l-.75.781-.781-.781q-1.313-1.406-3.156-1.406c-1.219 0-2.313.75-3.469 2.188q-.125.125-.219.25l-.688-2.344H7.812c-.281 1.281-.688 2.656-.688 4.062 0 1.406.391 2.781.688 4.062h-2.031l.656-2.344q.094.125.219.25c1.156 1.406 2.25 2.188 3.438 2.188 1.219 0 2.281-.531 3.125-1.438l.75-.781.781.781q1.313 1.406 3.156 1.406c1.219 0 2.313-.75 3.469-2.188q.125-.125.219-.25l.688 2.344h2.031c.281-1.281.688-2.656.688-4.062" />
   </svg>
 );
 
@@ -238,10 +259,13 @@ const ModeratorsSection: React.FC<{ lang: Language }> = ({ lang }) => {
         const kickJobs = ROSTER.map((m) =>
           fetchKickBase(m).then((p) => { if (p) applyKick(p); }).catch(() => {})
         );
-        const xJobs = ROSTER.map((m) =>
+        const xJobs = ROSTER.filter((m) => !m.discord).map((m) =>
           fetchXMod(m.x).then((p) => { if (p) applyX(p); }).catch(() => {})
         );
-        await Promise.allSettled([...kickJobs, ...xJobs]);
+        const discordJobs = ROSTER.filter((m) => m.discord).map((m) =>
+          fetchDiscordMod(m.discord).then((p) => { if (p) applyX(p); }).catch(() => {})
+        );
+        await Promise.allSettled([...kickJobs, ...xJobs, ...discordJobs]);
         if (!cancelled) {
           persist();
           setLoading(false);
@@ -293,26 +317,23 @@ const ModeratorsSection: React.FC<{ lang: Language }> = ({ lang }) => {
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/25 to-transparent" aria-hidden="true" />
               <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-l from-transparent via-[#7FB2FF]/90 to-transparent" aria-hidden="true" />
-              {/* زر X أعلى البانر */}
-              <a
-                href={`https://x.com/${boss.x}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`X — ${boss.x}`}
-                className="absolute top-3 end-3 w-9 h-9 rounded-xl bg-black/60 backdrop-blur border border-white/15 text-white/80 hover:text-black hover:bg-white hover:border-white flex items-center justify-center transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.35)]"
-              >
-                <XIconSmall className="w-3.5 h-3.5" />
-              </a>
             </div>
 
             {/* صف الهوية تحت البانر: الأفاتار يمين + الاسم بجانبه + الإحصائيات يسار — أفقي دائماً */}
             <div className="relative px-4 sm:px-6 lg:px-8 pb-5 sm:pb-7 -mt-9 sm:-mt-12">
               <div className="flex flex-row items-center gap-3 sm:gap-4">
                 {/* الأفاتار بالتاج + هالة دوّارة — يمين */}
-                <div className="relative w-fit shrink-0">
-                  <CrownIcon className="absolute -top-5 left-1/2 -translate-x-1/2 w-6 h-6 sm:w-7 sm:h-7 drop-shadow-[0_0_12px_rgba(77,141,255,0.9)] z-10" />
-                  <span className="halo-conic -inset-2" aria-hidden="true" />
-                  <span
+                  <div className="relative w-fit shrink-0">
+                    <CrownIcon className="absolute -top-5 left-1/2 -translate-x-1/2 w-6 h-6 sm:w-7 sm:h-7 drop-shadow-[0_0_12px_rgba(77,141,255,0.9)] z-10" />
+                    <span className="halo-conic -inset-2" aria-hidden="true" />
+                    {boss.discord && (
+                      <img
+                        src="https://cdn.discordapp.com/media/v1/collectibles-shop/1212569433839636530/animated"
+                        alt="frame"
+                        className="absolute -inset-1 w-[150px] h-[150px] sm:w-[190px] sm:h-[190px] pointer-events-none z-20 animate-spin-slow"
+                      />
+                    )}
+                    <span
                     className="relative rounded-full p-[2.5px] sm:p-[3px] w-16 h-16 sm:w-24 sm:h-24 shrink-0 block"
                     style={{
                       background: 'conic-gradient(from 200deg,#D6E9FF,#4D8DFF,#7FB2FF,#0B1B33,#D6E9FF)',
@@ -374,24 +395,18 @@ const ModeratorsSection: React.FC<{ lang: Language }> = ({ lang }) => {
 
               {/* الزرّان */}
               <div className="flex flex-wrap items-center gap-2.5 mt-5">
-                <a
-                  href={`https://x.com/${boss.x}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-arena inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black text-[13px] font-black hover:brightness-95 active:scale-[0.98] transition-all shadow-[0_10px_30px_-10px_rgba(255,255,255,0.4)]"
-                >
-                  {t.follow} <span dir="ltr">@{boss.x}</span>
-                  <XIconSmall className="w-3.5 h-3.5" />
-                </a>
-                <a
-                  href={`https://kick.com/${boss.kick}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-arena inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#4D8DFF]/10 border border-[#4D8DFF]/45 text-white text-[13px] font-black hover:bg-[#4D8DFF] hover:border-[#4D8DFF] hover:shadow-[0_0_28px_rgba(77,141,255,0.6)] active:scale-[0.98] transition-all"
-                >
-                  {t.viewKick}
-                  <KickIconSmall className="w-4 h-4" />
-                </a>
+                {boss.discord && (
+                  <a
+                    href={`https://discord.com/users/${boss.discord}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-arena inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#5865F2] text-white text-[13px] font-black hover:brightness-110 active:scale-[0.98] transition-all shadow-[0_10px_30px_-10px_rgba(88,101,242,0.45)]"
+                    aria-label={`Discord — ${boss.discord}`}
+                  >
+                    <span dir="ltr">Discord</span>
+                    <DiscordIconSmall className="w-3.5 h-3.5" />
+                  </a>
+                )}
               </div>
             </div>
           </div>
